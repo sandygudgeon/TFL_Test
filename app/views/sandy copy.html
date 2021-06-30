@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  HM Courts & Tribunals Service
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "Senior Developer Interview",
+	      href: "/"
+	    }
+	  ]
+	}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        TFL Coding Challenge
+      </h1>
+      <p>Select mode of travel first</p>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="mode">
+          Mode of Travel
+        </label>
+        <select class="govuk-select" id="mode" name="mode">
+          <option value="Tube">Tube</option>
+          <option value="Bus" selected>Bus</option>
+        </select>
+      </div>
+
+      <p>Select start and destination stations</p>
+
+      <div class="govuk-form-group", style="display: inline-block;">
+        <label class="govuk-label" for="startstation">
+          Origin Station
+        </label> 
+        <select class="govuk-select" id="startstation" name="startstation">
+          <option value="Holburn">Holburn</option>
+          <option value="Earl's Court" selected>Earl's Court</option>
+          <option value="Wimbledon">Wimbledon</option>
+          <option value="Hammersmith">Hammersmith</option>
+        </select>
+      </div>
+      <div class="govuk-form-group", style="display: inline-block;">
+        <label class="govuk-label" for="endstation">
+          Destination Station
+        </label>
+        <select class="govuk-select" id="endstation" name="endstation">
+          <option value="Holburn">Holburn</option>
+          <option value="Earl's Court" selected>Earl's Court</option>
+          <option value="Wimbledon">Wimbledon</option>
+          <option value="Hammersmith">Hammersmith</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Starting Oyster balance
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <p id='startbalance'></p>
+      </dd>
+    </div>
+      <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Journey cost
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <p id='cost'></p>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Closing Oyster balance
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <p id='endbalance'></p>
+      </dd>
+    </div>
+  </dl>
+  <button class="govuk-button" data-module="govuk-button">
+    Reset Oyster Balance
+  </button>
+  <button class="govuk-button" data-module="govuk-button">
+    Buy Journey
+  </button>
+
+<head>
+  <script>
+    import Dinero from Dinero.js
+    export default {
+      name: "App",
+      data(){
+        return{
+          amount: 30,
+          currency: 'UKP',
+          locale: 'en-GB'
+        }
+      },
+      computed: {
+        price(){
+        return Dinero({
+          amount: this.amount,
+          currency: this.currency
+        })
+        }
+      }
+    }
+    window.onload = function()
+    {
+    var vstartbalance = Dinero.price({ amount: 30, currency: 'GBP' }); 
+    var vcost = "£2.80";
+    var vendbalance = "£27.20";
+    document.getElementById("startbalance").innerHTML = vstartbalance
+    document.getElementById("cost").innerHTML = vcost
+    document.getElementById("endbalance").innerHTML = vendbalance
+    }
+  </script>
+</head>
+{% endblock %}
+

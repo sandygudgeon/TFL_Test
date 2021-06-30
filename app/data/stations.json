@@ -1,0 +1,21 @@
+{
+    "stations": [
+        {
+            "stationname": "Holburn",
+            "zone": "2"
+        },
+        {
+            "stationname": "Earl's Court",
+            "zone": "1, 2"
+        },
+        {
+            "stationname": "Wimbledon",
+            "zone": "3"
+        },
+        {
+            "stationname": "Hammersmith",
+            "zone": "2"
+        }
+    ],
+    "busprice": 2.8
+}
