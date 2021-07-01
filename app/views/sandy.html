@@ -65,7 +65,7 @@
         Starting Oyster balance
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='startbalance'></p>
+        <p id='_startBalance'></p>
       </dd>
     </div>
       <div class="govuk-summary-list__row">
@@ -73,7 +73,7 @@
         Journey cost
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='cost'></p>
+        <p id='_cost'></p>
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -81,7 +81,7 @@
         Closing Oyster balance
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='endbalance'></p>
+        <p id='_endBalance'></p>
       </dd>
     </div>
   </dl>
@@ -92,41 +92,6 @@
     Buy Journey
   </button>
 
-<head>
-  <script>
-
-var currencyInput = document.querySelector('input[type="currency"]')
-var currency = 'GBP'
-
-function localStringToNumber( s ){
-  return Number(String(s).replace(/[^0-9.-]+/g,""))
-}
-
-function formatCurrency (e){
-  var value = e.target.value
-
-  var options = {
-    maximumFractionDigits : 2,
-    currency: currency,
-    style: "currency",
-    currencyDisplay: "symbol"
-  }
-
-  e.target.value = (value || value === 0)
-  ? localStringToNumber(value).toLocaleString(undefined, options)
-  : ''
-}
-
-    window.onload = function()
-    {
-    var vstartbalance = formatCurrency(30); 
-    var vcost = "£2.80";
-    var vendbalance = "£27.20";
-    document.getElementById("startbalance").innerHTML = vstartbalance
-    document.getElementById("cost").innerHTML = vcost
-    document.getElementById("endbalance").innerHTML = vendbalance
-    }
-  </script>
-</head>
+<script src="./tfl_code.js"></script>
 {% endblock %}
 
