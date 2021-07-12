@@ -1,7 +1,7 @@
 //Initialise constant
 const cstartBalance = 30.00;
 //Initialise variables
-let _startBalance = Dinero.price({ amount: 30, currency: 'GBP' }),
+let _startBalance = 30.00,
     _cost = 2.80,
     _endBalance = 0,
     _traveType = "Bus",
@@ -10,7 +10,16 @@ let _startBalance = Dinero.price({ amount: 30, currency: 'GBP' }),
 
 //Show start/end balance & cost
 
-_startBalance=cstatyBalance;
-document.getElementById("startbalance").innerHTML = _startBalance
-document.getElementById("cost").innerHTML = _cost
-document.getElementById("endbalance").innerHTML = _endBalance
+//_startBalance=cstartBalance;
+
+//import currency = require("currency.js");
+//const UKP = value => currency(value, { symbol: '£', decimal: '.', separator: ',' });
+
+//create number formatter
+let _formatter = new Intl.NumberFormat('en-UK', {
+    style: 'currency',
+    currency: 'UKP'
+})
+
+
+
