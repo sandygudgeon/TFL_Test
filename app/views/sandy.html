@@ -28,8 +28,8 @@
           Mode of Travel
         </label>
         <select class="govuk-select" id="mode" name="mode">
-          <option value="Tube">Tube</option>
-          <option value="Bus" selected>Bus</option>
+          <option value="Tube" selected>Tube</option>
+          <option value="Bus">Bus</option>
         </select>
       </div>
 
@@ -40,8 +40,8 @@
           Origin Station
         </label> 
         <select class="govuk-select" id="startstation" name="startstation">
-          <option value="Holburn">Holburn</option>
-          <option value="Earl's Court" selected>Earl's Court</option>
+          <option value="Holburn" selected>Holburn</option>
+          <option value="Earl's Court">Earl's Court</option>
           <option value="Wimbledon">Wimbledon</option>
           <option value="Hammersmith">Hammersmith</option>
         </select>
@@ -65,7 +65,7 @@
         Starting Oyster balance
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='_startBalance'></p>
+        <p id='formatted_startbalance'></p>
       </dd>
     </div>
       <div class="govuk-summary-list__row">
@@ -73,7 +73,7 @@
         Journey cost
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='_cost'></p>
+        <p id='formatted_cost'></p>
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -81,17 +81,123 @@
         Closing Oyster balance
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='_endBalance'></p>
+        <p id='formatted_endbalance'></p>
       </dd>
     </div>
   </dl>
-  <button class="govuk-button" data-module="govuk-button">
+  <script>
+  </script>
+  <button id="reset_button" class="govuk-button" data-module="govuk-button">
     Reset Oyster Balance
   </button>
-  <button class="govuk-button" data-module="govuk-button">
+  <button id = "buy_button"class="govuk-button" data-module="govuk-button">
     Buy Journey
   </button>
 
+  <script>
+    window.onload = function x()
+      {
+      document.getElementById('formatted_startbalance').innerHTML = _formatted_startbalance;
+      document.getElementById('formatted_endbalance').innerHTML = _formatted_endbalance;
+      document.getElementById('formatted_cost').innerHTML = _formatted_cost;
+      //check for click of reset button
+      function reset()
+      {
+        alert("You clicked reset");
+        _startBalance=cstartBalance;
+        let _formatted_startbalance = _formatter.format(_startBalance);
+        let _formatted_endbalance = _formatter.format(_startBalance-_cost);
+        document.getElementById('formatted_startbalance').innerHTML = _formatted_startbalance;
+        document.getElementById('formatted_endbalance').innerHTML = _formatted_endbalance;
+      };
+
+      function calc_fare(ststart, stend)
+      {
+        let _zone1 = ["Holburn", "Earl's Court"];
+        let _zone2 = ["Earls Court", "Hammersmith"];
+        let _zone3 = ["Wimbledon"];
+        let _start = startstation.options[startstation.selectedIndex].value;
+        let _end = endstation.options[endstation.selectedIndex].value;
+        let _transport = mode.options[mode.selectedIndex].value;
+
+        if (_start == _end)
+        {_cost = 0;}
+        else
+          if (_transport == 'Bus')
+          {_cost=2.8}
+          else
+            //zone 1 start
+            if (_zone1.includes(_start))
+              {if(_zone1.includes(_end))
+                //zone 1 to 1
+                {_cost=2.5};
+              if(_zone2.includes(_end))
+                //zone 1 to 2
+                {_cost=3};
+              if(_zone3.includes(_end))
+                //zone 1 to 3
+                {_cost=3};
+              }
+              else
+            //zone 2 start    
+            if (_zone2.includes(_start))
+              {if(_zone2.includes(_end))
+                  //zone 2 to 2
+                  {_cost=2};
+              if(_zone1.includes(_end))
+                  //zone 2 to 1
+                  {_cost=3};
+              if(_zone3.includes(_end))
+                  //zone 2 to 3
+                  {_cost=2.25};
+              }
+              else
+            //zone 3 start      
+            if (_zone3.includes(_start))
+              {if(_zone3.includes(_end))
+                  //zone 3 to 3
+                  {_cost=2};
+                if(_zone2.includes(_end))
+                  //zone 3 to 2
+                  {_cost=2.25};
+                if(_zone1.includes(_end))
+                  //zone 3 to 1
+                  {_cost=3.2};
+            }
+        ;
+        //alert(_start + " " + _end + " " + _transport + " Cost:" +_cost );
+        let _formatted_cost = _formatter.format(_cost);
+        document.getElementById('formatted_cost').innerHTML = _formatted_cost;
+      };
+
+      function change_mode()
+      {
+        calc_fare();
+      };
+      function change_start()
+      {
+        calc_fare();
+      };
+
+      function change_end()
+      { 
+        calc_fare();
+      };
+
+      function buy_journey()
+      {
+        let _startBalance = 12.34//_startBalance - _cost;
+        let _formatted_startbalance = _formatter.format(_startBalance);
+        document.getElementById('formatted_startbalance').innerHTML = _formatted_startbalance;
+      };
+
+      document.getElementById('reset_button').addEventListener('click', reset);
+      document.getElementById('buy_button').addEventListener('click', buy_journey);
+      document.getElementById('startstation').addEventListener('change', change_start);
+      document.getElementById('endstation').addEventListener('change', change_end);
+      document.getElementById('mode').addEventListener('change', change_mode);
+    };
+  </script>
 
 {% endblock %}
 
