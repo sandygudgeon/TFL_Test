@@ -185,21 +185,20 @@
       };
 
       function buy_journey()
-      {
-        alert("Before If")
-        if (_startBalance < _cost)
+        {
+          if (_startBalance < _cost)
           {
             alert("Insufficient Funds!")
           }
-        else
+          else
           {
-            alert("Sufficient Funds!")
           _startBalance = _startBalance - _cost;
           let _formatted_startbalance = _formatter.format(_startBalance);
           _endBalance = _startBalance - _cost
           let _formatted_endbalance = _formatter.format(_endBalance);
           document.getElementById('formatted_startbalance').innerHTML = _formatted_startbalance;
           document.getElementById('formatted_endbalance').innerHTML = _formatted_endbalance;
+          }  
         };
 
         document.getElementById('reset_button').addEventListener('click', reset);
@@ -208,7 +207,6 @@
         document.getElementById('endstation').addEventListener('change', change_end);
         document.getElementById('mode').addEventListener('change', change_mode);
       };
-    }
   </script>
 
 {% endblock %}
