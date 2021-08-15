@@ -9,7 +9,7 @@ let _endStation = '';
 
 // Show start/end balance & cost
 _startBalance = cstartBalance;
-_endBalance = _startBalance - _cost
+_endBalance = _startBalance - _cost;
 
 // create number formatter
 let _formatter = new Intl.NumberFormat(undefined, {
