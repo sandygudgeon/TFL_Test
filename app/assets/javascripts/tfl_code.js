@@ -4,7 +4,7 @@ const cstartBalance = 30.00;
 let _startBalance = 0;
 let _endBalance = 27.20;
 let _traveType = 'Bus';
-let _startStation = ';
+let _startStation = '';
 let _endStation = '';
 
 // Show start/end balance & cost
