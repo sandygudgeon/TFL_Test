@@ -10,8 +10,6 @@ let _endStation = '';
 // Show start/end balance & cost
 _startBalance = cstartBalance;
 _endBalance = _startBalance - _cost
-// import currency = require("currency.js");
-// const UKP = value => currency(value, { symbol: '£', decimal: '.', separator: ',' });
 
 // create number formatter
 let _formatter = new Intl.NumberFormat(undefined, {
