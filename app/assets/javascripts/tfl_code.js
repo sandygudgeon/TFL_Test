@@ -1,17 +1,8 @@
-// Initialise constant
-const cstartBalance = 30.00;
-// Initialise variables
-let _startBalance = 30.00;
-let _endBalance = 27.20;
-let _traveType = 'Bus';
-let _startStation = 'xxx';
-let _endStation = 'yyy';
-let _cost = 2.80;
-// Show start/end balance & cost
-_startBalance = cstartBalance;
-_endBalance = _startBalance - _cost;
-
 // create number formatter
+let _startBalance = 30.00;
+let _cost = 2.80;
+let _endBalance = 27.20;
+
 let _formatter = new Intl.NumberFormat(undefined, {
   style: 'currency',
   currency: 'UKP'
