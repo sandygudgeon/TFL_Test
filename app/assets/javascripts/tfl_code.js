@@ -6,7 +6,9 @@ let _endBalance = 27.20;
 let _traveType = 'Bus';
 let _startStation = 'xxx';
 let _endStation = 'yyy';
-
+let _startBalance = 30.00;
+let _cost = 2.80;
+let _endBalance = 27.20;
 // Show start/end balance & cost
 _startBalance = cstartBalance;
 _endBalance = _startBalance - _cost;
