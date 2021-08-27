@@ -65,7 +65,7 @@
         Starting Oyster balance
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='formatted_startbalance'></p>
+        <p id='formatted_startBalance'></p>
       </dd>
     </div>
       <div class="govuk-summary-list__row">
@@ -81,7 +81,7 @@
         Closing Oyster balance
       </dt>
       <dd class="govuk-summary-list__value">
-        <p id='formatted_endbalance'></p>
+        <p id='formatted_endBalance'></p>
       </dd>
     </div>
   </dl>
@@ -97,8 +97,21 @@
   <script>
     window.onload = function x()
       {
-      document.getElementById('formatted_startbalance').innerHTML = _formatted_startbalance;
-      document.getElementById('formatted_endbalance').innerHTML = _formatted_endbalance;
+      let _startBalance = 30.00;
+      let _cost = 2.80;
+      let _endBalance = 27.20;
+      
+      let _formatter = new Intl.NumberFormat(undefined, {
+          style: 'currency',
+          currency: 'UKP'
+      });
+
+      let _formatted_startBalance = _formatter.format(_startBalance);
+      let _formatted_cost = _formatter.format(_cost);
+      let _formatted_endBalance = _formatter.format(_endBalance);
+
+      document.getElementById('formatted_startBalance').innerHTML = y //_formatted_startBalance;
+      document.getElementById('formatted_endBalance').innerHTML = _formatted_endBalance;
       document.getElementById('formatted_cost').innerHTML = _formatted_cost;
       //check for click of reset button
       function reset()
@@ -193,11 +206,11 @@
           else
           {
           _startBalance = _startBalance - _cost;
-          let _formatted_startbalance = _formatter.format(_startBalance);
+          let _formatted_startBalance = _formatter.format(_startBalance);
           _endBalance = _startBalance - _cost
-          let _formatted_endbalance = _formatter.format(_endBalance);
-          document.getElementById('formatted_startbalance').innerHTML = _formatted_startbalance;
-          document.getElementById('formatted_endbalance').innerHTML = _formatted_endbalance;
+          let _formatted_endBalance = _formatter.format(_endBalance);
+          document.getElementById('formatted_startBalance').innerHTML = _formatted_startBalance;
+          document.getElementById('formatted_endBalance').innerHTML = _formatted_endBalance;
           }  
         };
 
