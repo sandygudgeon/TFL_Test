@@ -7,7 +7,7 @@ module.exports = {
   serviceName: 'HM Courts & Tribunals Service',
 
   // Default port that prototype runs on
-  port: '3000',
+  port: '8080',
 
   // Enable or disable password protection on production
   useAuth: 'true',
